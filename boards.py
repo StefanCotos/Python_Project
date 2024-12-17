@@ -12,6 +12,16 @@ colors = [((0, 0, 255), (0, 0, 51)),  # Blue
 
 
 def draw_bubbles_on_board(bubbles_list, row, start, length, color, shadow_color):
+    """Draws bubbles on the board.
+
+    Keyword arguments:
+        bubbles_list (list): The list to append bubble dictionaries to.
+        row (int): The row number to draw the bubbles on.
+        start (int): The starting position for the bubbles.
+        length (int): The number of bubbles to draw.
+        color (tuple): The color of the bubbles.
+        shadow_color (tuple): The shadow color of the bubbles.
+    """
     if row % 2 != 0:
         start = start * 2 - 1
         length = start + (length * 2)
@@ -43,6 +53,11 @@ def draw_bubbles_on_board(bubbles_list, row, start, length, color, shadow_color)
 
 
 def draw_board_easy(bubbles_list):
+    """Draws an easy level board configuration with bubbles.
+
+    Keyword arguments:
+        bubbles_list (list): The list to append bubble dictionaries to.
+    """
     draw_bubbles_on_board(bubbles_list, 1, 2, 10, colors[3][0], colors[3][1])
 
     draw_bubbles_on_board(bubbles_list, 2, 1, 1, colors[3][0], colors[3][1])
@@ -88,6 +103,11 @@ def draw_board_easy(bubbles_list):
 
 
 def draw_board_medium(bubbles_list):
+    """Draws a medium level board configuration with bubbles.
+
+    Keyword arguments:
+    bubbles_list (list): The list to append bubble dictionaries to.
+    """
     draw_bubbles_on_board(bubbles_list, 1, 1, 4, colors[3][0], colors[3][1])
     draw_bubbles_on_board(bubbles_list, 1, 5, 4, colors[5][0], colors[5][1])
     draw_bubbles_on_board(bubbles_list, 1, 9, 4, colors[2][0], colors[2][1])
@@ -118,6 +138,11 @@ def draw_board_medium(bubbles_list):
 
 
 def draw_board_hard(bubbles_list):
+    """Draws a hard level board configuration with bubbles.
+
+    Keyword arguments:
+    bubbles_list (list): The list to append bubble dictionaries to.
+    """
     draw_bubbles_on_board(bubbles_list, 1, 1, 1, colors[0][0], colors[0][1])
     draw_bubbles_on_board(bubbles_list, 1, 2, 3, colors[4][0], colors[4][1])
     draw_bubbles_on_board(bubbles_list, 1, 6, 2, colors[4][0], colors[4][1])

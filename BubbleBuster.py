@@ -42,6 +42,12 @@ bubble_center_copy = bubble_center
 
 
 def draw_bubbles_on_board(screen, color):
+    """Draws bubbles on the game board.
+
+    Keyword arguments:
+        screen (pygame.Surface): The surface to draw the bubbles on.
+        color (tuple): The color of the bubbles to be drawn.
+    """
     pygame.draw.circle(screen, color, [50, 150], 20)
     pygame.draw.circle(screen, color, [140, 90], 20)
     pygame.draw.circle(screen, color, [300, 100], 20)
@@ -60,6 +66,14 @@ def draw_bubbles_on_board(screen, color):
 
 
 def show_menu(screen):
+    """Displays the main menu of the game.
+
+    Keyword arguments:
+        screen (pygame.Surface): The surface to draw the menu on.
+
+    Returns:
+        str: The selected difficulty level ('easy', 'medium', or 'hard').
+    """
     font_title = pygame.font.Font(None, 55)
     font_menu = pygame.font.Font(None, 60)
     welcome_text = font_title.render("Welcome to Bubble Buster", True, text_color)
@@ -124,6 +138,13 @@ next_shadow_color = next_random_color[1]
 
 
 def reset_game():
+    """Resets the game state to its initial configuration.
+
+    This function clears the bubbles and rectangles lists, resets the velocity,
+    shooting and rectangle counters, and reinitialized the bubble positions and colors.
+    It also displays the main menu for the user to select the difficulty level and
+    redraws the game board accordingly.
+    """
     global bubbles_list, rect_list, velocity, counting_shooting, counting_rect, destination, bubble_center, bubble_pos, random_color, bubble_color, shadow_color, next_random_color, next_bubble_color, next_shadow_color
 
     bubbles_list = []
