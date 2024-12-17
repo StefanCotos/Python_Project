@@ -47,12 +47,16 @@ while running:
         bubble_pos[1] += velocity[1] * speed
         bubble_center = [int(bubble_pos[0]), int(bubble_pos[1])]
 
-        velocity = utils.check_wall_collision(bubble_center, velocity, bubble_radius, 528)
+        velocity = utils.verify_wall_collision(bubble_center, velocity, bubble_radius, 528)
 
-        if utils.verify_bubble_collision(bubble_center, bubble_radius, bubbles_list) or utils.check_ceiling_collision(bubble_center, bubble_radius):
+        bubble_collision, bubble_closest_position = utils.verify_bubble_collision(bubble_center, bubble_radius, bubbles_list)
+        ceiling_collision, ceiling_closest_position = utils.verify_ceiling_collision(bubble_center, bubble_radius, bubbles_list)
+
+        if bubble_collision or ceiling_collision:
             destination = None
+            closest_position = bubble_closest_position if bubble_collision else ceiling_closest_position
             bubbles_list.append({
-                'center': [bubble_center[0] + 2, bubble_center[1] + 2],
+                'center': closest_position,
                 'radius': 20,
                 'row': None,
                 'color': bubble_color,
