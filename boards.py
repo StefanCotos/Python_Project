@@ -20,8 +20,11 @@ def draw_bubbles_on_board(bubbles_list, row, start, length, color, shadow_color)
         height = 22 + (between_rows * (row - 1))
         for i in range(start, length, 2):
             bubbles_list.append(
-                {'center': [bubble_radius_with_shadow * i, height], 'row': row, 'radius': 20, 'color': color,
-                 'shadow_color': shadow_color, 'neighbours': []})
+                {'center': [bubble_radius_with_shadow * i, height],
+                 'radius': 20,
+                 'color': color,
+                 'shadow_color': shadow_color,
+                 'neighbours': []})
     else:
         start = start * 2
         length = start + (length * 2)
@@ -31,35 +34,38 @@ def draw_bubbles_on_board(bubbles_list, row, start, length, color, shadow_color)
         height = 22 + (between_rows * (row - 1))
         for i in range(start, length, 2):
             bubbles_list.append(
-                {'center': [bubble_radius_with_shadow * i, height], 'row': row, 'radius': 20, 'color': color,
-                 'shadow_color': shadow_color, 'neighbours': []})
+                {'center': [bubble_radius_with_shadow * i, height],
+                 'radius': 20,
+                 'color': color,
+                 'shadow_color': shadow_color,
+                 'neighbours': []})
 
 
 def draw_board1(bubbles_list):
     draw_bubbles_on_board(bubbles_list, 1, 1, 4, colors[3][0], colors[3][1])
     draw_bubbles_on_board(bubbles_list, 1, 5, 4, colors[5][0], colors[5][1])
-    # draw_bubbles_on_board(bubbles_list, 1, 9, 4, colors[2][0], colors[2][1])
-    #
-    # draw_bubbles_on_board(bubbles_list, 2, 1, 3, colors[3][0], colors[3][1])
-    # draw_bubbles_on_board(bubbles_list, 2, 4, 4, colors[5][0], colors[5][1])
-    # draw_bubbles_on_board(bubbles_list, 2, 8, 4, colors[2][0], colors[2][1])
-    #
-    # draw_bubbles_on_board(bubbles_list, 3, 1, 3, colors[0][0], colors[0][1])
-    # draw_bubbles_on_board(bubbles_list, 3, 5, 4, colors[0][0], colors[0][1])
-    # draw_bubbles_on_board(bubbles_list, 3, 10 , 3, colors[0][0], colors[0][1])
-    #
-    # draw_bubbles_on_board(bubbles_list, 4, 1, 1, colors[3][0], colors[3][1])
-    # draw_bubbles_on_board(bubbles_list, 4, 2, 1, colors[5][0], colors[5][1])
-    # draw_bubbles_on_board(bubbles_list, 4, 3, 1, colors[2][0], colors[2][1])
-    # draw_bubbles_on_board(bubbles_list, 4, 5, 1, colors[3][0], colors[3][1])
-    # draw_bubbles_on_board(bubbles_list, 4, 6, 1, colors[5][0], colors[5][1])
-    # draw_bubbles_on_board(bubbles_list, 4, 7, 1, colors[2][0], colors[2][1])
-    # draw_bubbles_on_board(bubbles_list, 4, 9, 1, colors[3][0], colors[3][1])
-    # draw_bubbles_on_board(bubbles_list, 4, 10, 1, colors[5][0], colors[5][1])
-    # draw_bubbles_on_board(bubbles_list, 4, 11, 1, colors[2][0], colors[2][1])
+    draw_bubbles_on_board(bubbles_list, 1, 9, 4, colors[2][0], colors[2][1])
 
-    # draw_bubbles_on_board(bubbles_list, 5, 1, 4, colors[0][0], colors[0][1])
-    # draw_bubbles_on_board(bubbles_list, 5, 6, 2, colors[0][0], colors[0][1])
-    # draw_bubbles_on_board(bubbles_list, 5, 9, 4, colors[0][0], colors[0][1])
+    draw_bubbles_on_board(bubbles_list, 2, 1, 3, colors[3][0], colors[3][1])
+    draw_bubbles_on_board(bubbles_list, 2, 4, 4, colors[5][0], colors[5][1])
+    draw_bubbles_on_board(bubbles_list, 2, 8, 4, colors[2][0], colors[2][1])
+
+    draw_bubbles_on_board(bubbles_list, 3, 1, 3, colors[0][0], colors[0][1])
+    draw_bubbles_on_board(bubbles_list, 3, 5, 4, colors[0][0], colors[0][1])
+    draw_bubbles_on_board(bubbles_list, 3, 10 , 3, colors[0][0], colors[0][1])
+
+    draw_bubbles_on_board(bubbles_list, 4, 1, 1, colors[3][0], colors[3][1])
+    draw_bubbles_on_board(bubbles_list, 4, 2, 1, colors[5][0], colors[5][1])
+    draw_bubbles_on_board(bubbles_list, 4, 3, 1, colors[2][0], colors[2][1])
+    draw_bubbles_on_board(bubbles_list, 4, 5, 1, colors[3][0], colors[3][1])
+    draw_bubbles_on_board(bubbles_list, 4, 6, 1, colors[5][0], colors[5][1])
+    draw_bubbles_on_board(bubbles_list, 4, 7, 1, colors[2][0], colors[2][1])
+    draw_bubbles_on_board(bubbles_list, 4, 9, 1, colors[3][0], colors[3][1])
+    draw_bubbles_on_board(bubbles_list, 4, 10, 1, colors[5][0], colors[5][1])
+    draw_bubbles_on_board(bubbles_list, 4, 11, 1, colors[2][0], colors[2][1])
+
+    draw_bubbles_on_board(bubbles_list, 5, 1, 4, colors[0][0], colors[0][1])
+    draw_bubbles_on_board(bubbles_list, 5, 6, 2, colors[0][0], colors[0][1])
+    draw_bubbles_on_board(bubbles_list, 5, 9, 4, colors[0][0], colors[0][1])
 
     utils.add_neighbours(bubbles_list)
