@@ -39,6 +39,19 @@ def verify_best_position(bubble, x, y, bubbles_list, bubble_color, shadow_color)
                       (bubble['center'][0] + 22, bubble['center'][1] + 38),
                       (bubble['center'][0] - 22, bubble['center'][1] - 38),
                       (bubble['center'][0] + 22, bubble['center'][1] - 38)]
+
+    if bubble['center'][1] == ceiling:
+        best_positions.remove((bubble['center'][0] - 22, bubble['center'][1] - 38))
+        best_positions.remove((bubble['center'][0] + 22, bubble['center'][1] - 38))
+    elif bubble['center'][0] == 22:
+        best_positions.remove((bubble['center'][0] - 22, bubble['center'][1] - 38))
+        best_positions.remove((bubble['center'][0] - 44, bubble['center'][1]))
+        best_positions.remove((bubble['center'][0] - 22, bubble['center'][1] + 38))
+    elif bubble['center'][0] == 506:
+        best_positions.remove((bubble['center'][0] + 22, bubble['center'][1] - 38))
+        best_positions.remove((bubble['center'][0] + 44, bubble['center'][1]))
+        best_positions.remove((bubble['center'][0] + 22, bubble['center'][1] + 38))
+
     closest_position = min(best_positions, key=lambda pos: math.hypot(pos[0] - x, pos[1] - y))
     for neighbor in bubble['neighbours']:
         if neighbor['center'] == closest_position:
