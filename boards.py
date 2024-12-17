@@ -17,7 +17,7 @@ def draw_bubbles_on_board(bubbles_list, row, start, length, color, shadow_color)
         if length > 25:
             print("Error: Maximum number of bubbles exceeded")
             utils.stop_program()
-        height = 22 + (between_rows * (row - 1))
+        height = utils.ceiling + (between_rows * (row - 1))
         for i in range(start, length, 2):
             bubbles_list.append(
                 {'center': [bubble_radius_with_shadow * i, height],
@@ -31,7 +31,7 @@ def draw_bubbles_on_board(bubbles_list, row, start, length, color, shadow_color)
         if length > 24:
             print("Error: Maximum number of bubbles exceeded")
             utils.stop_program()
-        height = 22 + (between_rows * (row - 1))
+        height = utils.ceiling + (between_rows * (row - 1))
         for i in range(start, length, 2):
             bubbles_list.append(
                 {'center': [bubble_radius_with_shadow * i, height],
@@ -52,7 +52,7 @@ def draw_board1(bubbles_list):
 
     draw_bubbles_on_board(bubbles_list, 3, 1, 3, colors[0][0], colors[0][1])
     draw_bubbles_on_board(bubbles_list, 3, 5, 4, colors[0][0], colors[0][1])
-    draw_bubbles_on_board(bubbles_list, 3, 10 , 3, colors[0][0], colors[0][1])
+    draw_bubbles_on_board(bubbles_list, 3, 10, 3, colors[0][0], colors[0][1])
 
     draw_bubbles_on_board(bubbles_list, 4, 1, 1, colors[3][0], colors[3][1])
     draw_bubbles_on_board(bubbles_list, 4, 2, 1, colors[5][0], colors[5][1])

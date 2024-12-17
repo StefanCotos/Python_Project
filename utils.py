@@ -3,6 +3,9 @@ import sys
 import math
 
 
+ceiling = 22
+
+
 def stop_program():
     pygame.quit()
     sys.exit()
@@ -53,16 +56,16 @@ def verify_best_position(bubble, x, y, bubbles_list, bubble_color, shadow_color)
     return closest_position
 
 
-def verify_ceiling_collision(bubble_center, bubble_radius, bubbles_list, bubble_color, shadow_color):
-    if bubble_center[1] - bubble_radius <= 0:
+def verify_ceiling_collision(bubble_center, bubbles_list, bubble_color, shadow_color):
+    if bubble_center[1] - ceiling <= 0:
         verify_best_position_when_ceiling_collision(bubble_center, bubbles_list, bubble_color, shadow_color)
         return True
     return False
 
 
 def verify_best_position_when_ceiling_collision(bubble_center, bubbles_list, bubble_color, shadow_color):
-    best_positions = [(22, 22), (66, 22), (110, 22), (154, 22), (198, 22), (242, 22),
-                      (286, 22), (330, 22), (374, 22), (418, 22), (462, 22), (506, 22)]
+    best_positions = [(22, ceiling), (66, ceiling), (110, ceiling), (154, ceiling), (198, ceiling), (242, ceiling),
+                      (286, ceiling), (330, ceiling), (374, ceiling), (418, ceiling), (462, ceiling), (506, ceiling)]
     closest_position = min(best_positions,
                            key=lambda pos: math.hypot(pos[0] - bubble_center[0], pos[1] - bubble_center[1]))
     bubbles_list.append({
@@ -117,7 +120,7 @@ def verify_group_bubbles(bubble, bubbles_list):
 
 
 def remove_floating_bubbles(bubbles_list):
-    ceiling_bubbles = [bubble for bubble in bubbles_list if bubble['center'][1] == 22]
+    ceiling_bubbles = [bubble for bubble in bubbles_list if bubble['center'][1] == ceiling]
     visited = set()
 
     def dfs(bubble):
@@ -142,7 +145,27 @@ def verify_colors_still_available(bubbles_list):
     return colors
 
 
-def verify_game_over(bubbles_list):
+def verify_game_over_win(bubbles_list):
     if len(bubbles_list) == 0:
         return True
     return False
+
+
+def verify_game_over_lost(bubbles_list):
+    for bubble in bubbles_list:
+        if bubble['center'][1] > 595:
+            return True
+    return False
+
+
+def space_reduction(bubbles_list):
+    global ceiling
+    for bubble in bubbles_list:
+        bubble['center'] = (bubble['center'][0], bubble['center'][1] + 38)
+    add_neighbours(bubbles_list)
+    ceiling += 38
+
+
+def draw_rectangular(screen, rect_color, rect_list):
+    for rect in rect_list:
+        pygame.draw.rect(screen, rect_color, rect)
