@@ -156,6 +156,7 @@ def reset_game():
     bubble_center = bubble_center_copy
     bubble_pos = bubble_center[:]
     utils.ceiling = 22
+    utils.score = 0
 
     menu_selection = show_menu(screen)
     if menu_selection == "easy":
@@ -208,10 +209,12 @@ while running:
             font = pygame.font.Font(None, 74)
             final_text = font.render("Game Over", True, win_text_color)
             winning_text = font.render("You did it!", True, win_text_color)
+            score_text = font.render("Score: " + str(utils.score), True, win_text_color)
             screen.blit(final_text, (130, 250))
             screen.blit(winning_text, (150, 300))
+            screen.blit(score_text, (150, 350))
             pygame.display.flip()
-            pygame.time.wait(4000)
+            pygame.time.wait(3000)
             reset_game()
             continue
 
@@ -238,11 +241,13 @@ while running:
         final_text = font.render("Game Over", True, lost_text_color)
         winning_text = font.render("You lost :(", True, lost_text_color)
         try_again_text = font.render("Try again!", True, lost_text_color)
+        score_text = font.render("Score: " + str(utils.score), True, lost_text_color)
         screen.blit(final_text, (130, 250))
         screen.blit(winning_text, (150, 300))
         screen.blit(try_again_text, (150, 350))
+        screen.blit(score_text, (150, 400))
         pygame.display.flip()
-        pygame.time.wait(4000)
+        pygame.time.wait(3000)
         reset_game()
         continue
 
@@ -260,6 +265,8 @@ while running:
     screen.blit(button_text, (main_menu_button.x + 10, main_menu_button.y + 5))
     next_text = font.render("Next:", True, button_color)
     screen.blit(next_text, (next_bubble_center[0] - 75, next_bubble_center[1] - 10))
+    score_text = font.render("Score: " + str(utils.score), True, button_color)
+    screen.blit(score_text, (210, 697.5))
 
     pygame.display.flip()
 

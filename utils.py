@@ -5,6 +5,7 @@ import math
 
 # The initial vertical position of the ceiling in the game
 ceiling = 22
+score = 0
 
 
 def stop_program():
@@ -201,6 +202,7 @@ def verify_group_bubbles(bubble, bubbles_list):
     """
     visited = set()
     group = []
+    global score
 
     def dfs(b):
         if id(b) in visited:
@@ -214,6 +216,8 @@ def verify_group_bubbles(bubble, bubbles_list):
     dfs(bubble)
 
     if len(group) > 2:
+        score += len(group) * 10
+        print('Score:', score)
         for b in group:
             bubbles_list.remove(b)
         add_neighbours(bubbles_list)
@@ -228,6 +232,7 @@ def remove_floating_bubbles(bubbles_list):
     """
     ceiling_bubbles = [bubble for bubble in bubbles_list if bubble['center'][1] == ceiling]
     visited = set()
+    global score
 
     def dfs(bubble):
         if id(bubble) in visited:
@@ -241,6 +246,7 @@ def remove_floating_bubbles(bubbles_list):
 
     floating_bubbles = [bubble for bubble in bubbles_list if id(bubble) not in visited]
     for bubble in floating_bubbles:
+        score += 10
         bubbles_list.remove(bubble)
 
 
