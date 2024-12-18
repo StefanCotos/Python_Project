@@ -217,7 +217,6 @@ def verify_group_bubbles(bubble, bubbles_list):
 
     if len(group) > 2:
         score += len(group) * 10
-        print('Score:', score)
         for b in group:
             bubbles_list.remove(b)
         add_neighbours(bubbles_list)
