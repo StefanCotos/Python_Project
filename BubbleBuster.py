@@ -3,6 +3,7 @@ import boards
 import pygame
 import math
 import random
+import pygame.mixer
 
 # Bubble size: 44 x 44
 # Odd rows: max 12 bubbles, first bubble center 22px width 22px height
@@ -10,6 +11,7 @@ import random
 # Rows start with 1
 
 pygame.init()
+pygame.mixer.init()
 
 screen = pygame.display.set_mode((528, 740))
 pygame.display.set_caption('Bubble Buster')
@@ -39,6 +41,10 @@ running = True
 destination = None
 bubble_pos = bubble_center[:]
 bubble_center_copy = bubble_center
+
+winning_sound = pygame.mixer.Sound('sounds/winning.wav')
+losing_sound = pygame.mixer.Sound('sounds/losing.wav')
+shooting_sound = pygame.mixer.Sound('sounds/shooting.mp3')
 
 
 def draw_bubbles_on_board(screen, color):
@@ -186,6 +192,7 @@ while running:
             if event.pos[1] < 600:
                 counting_shooting += 1
                 destination = event.pos
+                shooting_sound.play()
                 dx, dy = destination[0] - bubble_center[0], destination[1] - bubble_center[1]
                 distance = math.hypot(dx, dy)
                 if distance > 0:
@@ -205,6 +212,7 @@ while running:
         ceiling_collision = utils.verify_ceiling_collision(bubble_center, bubbles_list, bubble_color, shadow_color)
 
         if utils.verify_game_over_win(bubbles_list):
+            winning_sound.play()
             draw_bubbles_on_board(screen, win_bubbles_color)
             font = pygame.font.Font(None, 74)
             final_text = font.render("Game Over", True, win_text_color)
@@ -229,13 +237,18 @@ while running:
             bubble_pos = bubble_center[:]
             velocity = [0, 0]
 
-    if counting_shooting == 5:
-        counting_rect += 1
-        rect_list.append((0, 0, 528, 38 * counting_rect))
-        utils.space_reduction(bubbles_list)
-        counting_shooting = 0
+            if counting_shooting == 5:
+                counting_rect += 1
+                rect_list.append((0, 0, 528, 38 * counting_rect))
+                utils.space_reduction(bubbles_list)
+                counting_shooting = 0
+
+    if counting_shooting == 4:
+        warning_text = font.render("Be careful!", True, button_color)
+        screen.blit(warning_text, (210, 580))
 
     if utils.verify_game_over_lost(bubbles_list):
+        losing_sound.play()
         draw_bubbles_on_board(screen, lost_bubbles_color)
         font = pygame.font.Font(None, 74)
         final_text = font.render("Game Over", True, lost_text_color)

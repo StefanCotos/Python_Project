@@ -1,11 +1,14 @@
 import pygame
+import pygame.mixer
 import sys
 import math
 
+pygame.mixer.init()
 
 # The initial vertical position of the ceiling in the game
 ceiling = 22
 score = 0
+bubble_collision_sound = pygame.mixer.Sound('sounds/bubble_collision.wav')
 
 
 def stop_program():
@@ -217,6 +220,7 @@ def verify_group_bubbles(bubble, bubbles_list):
 
     if len(group) > 2:
         score += len(group) * 10
+        bubble_collision_sound.play()
         for b in group:
             bubbles_list.remove(b)
         add_neighbours(bubbles_list)
